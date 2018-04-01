@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="col-md-8">{{ task.taskName }}</div>
+    <div class="col-md-2">
+      <i class="fa fa-edit" style="font-size:20px"></i>
+    </div>
+    <div class="col-md-2">
+      <i class="fa fa-trash-o" style="font-size:20px;color:red" (click)="deleteTask(task)"></i>
+    </div>
+</div>

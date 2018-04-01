@@ -1,0 +1,2 @@
+1) Single call for fetching the task from server.
+2) Separate component for alert message .. Modal similar like bootstrap.
