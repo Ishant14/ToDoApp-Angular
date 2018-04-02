@@ -17,7 +17,13 @@ export class TaskCompletedComponent implements OnInit {
 
   ngOnInit() {
     this.getTask();
-    this.taskService.currentTaskToBeDeleted.subscribe(task=>this.deleteTask(task));
+    this.taskService.currentTaskToBeDeleted.subscribe(
+      task => {
+        if (task) {
+          this.deleteTask(task)
+        }
+      }
+    );
   }
 
   getTask() {
@@ -34,8 +40,7 @@ export class TaskCompletedComponent implements OnInit {
   }
 
   deleteTask(task:Task){
-    
-      this.taskService.deleteTask(task)
+    this.taskService.deleteTask(task)
       .subscribe(data=>{
         console.log(data)
       });

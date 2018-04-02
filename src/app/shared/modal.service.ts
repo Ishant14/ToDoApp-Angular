@@ -1,6 +1,7 @@
 import { Injectable, TemplateRef, ContentChild } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { Subject } from 'rxjs';
 
 
 @Injectable()
@@ -10,13 +11,9 @@ export class ModalService {
   
   constructor(private modalService: BsModalService) { }
 
-  openConfirmDialog() :any{
+  openConfirmDialog() :Subject<boolean>{
     this.modalRef = this.modalService.show(ConfirmModalComponent);
-    this.modalRef.content.onClose.subscribe(result => {
-      console.log('results', result);
-      return result;
-    })
-  }
-
+    return this.modalRef.content.onClose;
+ }
 
 }

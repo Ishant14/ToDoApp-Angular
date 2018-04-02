@@ -10,14 +10,28 @@ import { Task } from '../shared/task.model';
 export class TodotaskComponent implements OnInit {
 
   taskList: Task[];
-  canDelete : boolean;
-  taskToBeDeleted : Task;
+  canDelete: boolean;
+  taskToBeDeleted: Task;
 
   constructor(private taskService: TaskserviceService) { }
 
   ngOnInit() {
     this.getTask();
-    this.taskService.currentTaskToBeDeleted.subscribe(task=>this.deleteTask(task));
+    this.taskService.currentTaskToBeDeleted.subscribe(
+      task => {
+        if (task) {
+          this.deleteTask(task)
+        }
+      }
+    );
+
+    this.taskService.newTasKCreated.subscribe(
+      task=>{
+        if(task){
+          this.taskList.push(task);
+        }
+      }
+    );
   }
 
   getTask() {
@@ -33,12 +47,13 @@ export class TodotaskComponent implements OnInit {
     });
   }
 
-  deleteTask(task:Task){
-      this.taskService.deleteTask(task)
-      .subscribe(data=>{
-        console.log(data)
+  deleteTask(task: Task) {
+    this.taskService.deleteTask(task)
+      .subscribe(data => {
+       if(data){
+        this.taskList = this.taskList.filter(task=>task.id !== data.id);
+       }
       });
-    
   }
 
 }

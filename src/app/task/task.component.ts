@@ -13,8 +13,6 @@ import { ModalService } from '../shared/modal.service';
 export class TaskComponent implements OnInit {
 
   @Input() task: Task;
-  canDelete: boolean;
-
   constructor(private taskService: TaskserviceService, private modalService: ModalService) { }
 
   ngOnInit() {
@@ -22,9 +20,8 @@ export class TaskComponent implements OnInit {
 
   deleteTask(task: Task) {
     this.modalService.openConfirmDialog().subscribe(
-      result => {
-        console.log("CanDelete:" + this.canDelete);
-        if (this.canDelete) {
+      canDelete => {
+        if(canDelete) {
           this.taskService.changeTask(task);
         }
       })

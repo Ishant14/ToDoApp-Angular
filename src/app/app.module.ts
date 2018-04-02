@@ -12,6 +12,8 @@ import { ModalModule } from 'ngx-bootstrap';
 import { TaskListPanelComponent } from './task-list-panel/task-list-panel.component';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { ModalService } from './shared/modal.service';
+import { NewTaskComponent } from './new-task/new-task.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,11 +25,13 @@ import { ModalService } from './shared/modal.service';
     TaskCompletedComponent,
     TaskComponent,
     TaskListPanelComponent,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    NewTaskComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
     AngularFontAwesomeModule,
     ModalModule.forRoot()
   ],

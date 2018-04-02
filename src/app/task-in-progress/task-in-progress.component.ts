@@ -17,7 +17,13 @@ export class TaskInProgressComponent implements OnInit {
 
   ngOnInit() {
     this.getTask();
-    this.taskService.currentTaskToBeDeleted.subscribe(task=>this.deleteTask(task));
+    this.taskService.currentTaskToBeDeleted.subscribe(
+      task => {
+        if (task) {
+          this.deleteTask(task)
+        }
+      }
+    );
   }
 
   getTask() {
